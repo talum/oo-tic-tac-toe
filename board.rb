@@ -1,6 +1,5 @@
 class Board
-  attr_reader :state, :size
-  attr_accessor :current_player
+  attr_reader :state, :size, :current_player
 
   def initialize(size=3)
     @size = size
@@ -9,16 +8,6 @@ class Board
   def build
     generate_initial_state
     generate_map
-  end
-
-  def generate_initial_state
-    @state = Array.new(size) { Array.new(size) { Cell.new } }
-  end
-
-  def generate_map
-    state.flatten.each.with_index(1) do |cell, i|
-      cell.position = i
-    end
   end
 
   def display
@@ -35,6 +24,27 @@ class Board
 
   def available_cells
     Cell.available_cell_positions
+  end
+
+  def winner?(current_player)
+    @current_player = current_player
+    row_win? || column_win? || diagonal_win?
+  end
+
+  def full?
+    available_cells.none?
+  end
+
+  private
+
+  def generate_initial_state
+    @state = Array.new(size) { Array.new(size) { Cell.new } }
+  end
+
+  def generate_map
+    state.flatten.each.with_index(1) do |cell, i|
+      cell.position = i
+    end
   end
 
   def row_win?
@@ -76,8 +86,5 @@ class Board
     left_diagonal_win? || right_diagonal_win?
   end
 
-  def full?
-    available_cells.none?
-  end
 end
 

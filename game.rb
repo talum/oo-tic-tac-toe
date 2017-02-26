@@ -2,16 +2,26 @@ class Game
   attr_reader :board, :player1, :player2
   attr_accessor :winner, :current_player
 
-  def initialize(player1, player2)
+  def initialize
     @board = Board.new
     @board.build
+  end
+
+  def select_player(player_response)
+    if player_response == 1
+      player1 = Player.new(:x, "human", "Player 1")
+      player2 = Player.new(:o, "computer", "Player 2")
+    else
+      player1 = Player.new(:x, "computer", "Player 1")
+      player2 = Player.new(:o, "human", "Player 2")
+    end
+
     @player1 = player1
     @player2 = player2
   end
 
   def start
     @current_player = player1
-    board.current_player = current_player
   end
 
   def turn
@@ -36,22 +46,6 @@ class Game
     winner? || draw?
   end
 
-  def winner?
-    board.row_win? || board.column_win? || board.diagonal_win?
-  end
-
-  def draw?
-    board.full?
-  end
-
-  def switch_player
-    if self.current_player == player1
-      self.current_player = player2
-    else
-      self.current_player = player1
-    end
-  end
-
   def end
     if winner?
       puts winner_message
@@ -66,5 +60,27 @@ class Game
 
   def draw_message
     "You tied"
+  end
+
+  def reset
+    Cell.clear
+  end
+
+  private
+
+  def switch_player
+    if self.current_player == player1
+      self.current_player = player2
+    else
+      self.current_player = player1
+    end
+  end
+
+  def winner?
+    board.winner?(current_player)
+  end
+
+  def draw?
+    board.full?
   end
 end

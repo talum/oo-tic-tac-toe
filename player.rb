@@ -11,16 +11,18 @@ class Player
     [1, 2]
   end
 
-  def human?
-    role == "human"
-  end
-
   def prompt(board)
-    if self.human?
+    if human?
       gets.chomp.to_i
     else
       select_move(board)
     end
+  end
+
+  private
+
+  def human?
+    role == "human"
   end
 
   def select_move(board)

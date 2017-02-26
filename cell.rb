@@ -10,6 +10,10 @@ class Cell
   def self.all
     @@all ||= []
   end
+  
+  def self.clear
+    @@all = []
+  end
 
   def self.available_cells
     self.all.select{|cell| cell.available?}
@@ -31,10 +35,6 @@ class Cell
     @value = marker
   end
 
-  def default?
-    value == ""
-  end
-
   def available?
     default?
   end
@@ -42,4 +42,10 @@ class Cell
   def display
     default? ? position : value
   end
+
+  private
+  def default?
+    value == ""
+  end
+
 end
