@@ -1,5 +1,6 @@
 class Board
-  attr_reader :state, :size, :current_player
+  attr_reader :size, :current_player
+  attr_accessor :state
 
   def initialize(size=3)
     @size = size
@@ -60,26 +61,24 @@ class Board
   end
 
   def left_diagonal_win?
-   left_start = 1
-   left_positions = []
-   1.upto(size) do |i|
-     left_positions << (left_start + (i-1)*(size+1))
-   end
+    left_start = 1
+    left_positions = []
+    1.upto(size) do |i|
+      left_positions << (left_start + (i-1)*(size+1))
+    end
 
-   left_diagonal_cells = Cell.where_positions(left_positions)
-  left_diagonal_cells.all?{|cell| cell.value == current_player.marker}
-   
+    left_diagonal_cells = Cell.where_positions(left_positions)
+    left_diagonal_cells.all?{|cell| cell.value == current_player.marker}
   end
 
   def right_diagonal_win?
-   right_start = size
-   right_positions = []
-   1.upto(size) do |i|
-     right_positions << (right_start + (i-1)*(size-1))
-   end
-   right_diagonal_cells = Cell.where_positions(right_positions)
-
-  right_diagonal_cells.all?{|cell| cell.value == current_player.marker}
+    right_start = size
+    right_positions = []
+    1.upto(size) do |i|
+      right_positions << (right_start + (i-1)*(size-1))
+    end
+    right_diagonal_cells = Cell.where_positions(right_positions)
+    right_diagonal_cells.all?{|cell| cell.value == current_player.marker}
   end
 
   def diagonal_win?

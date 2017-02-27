@@ -2,8 +2,9 @@ class Cell
   attr_reader :value
   attr_accessor :position
 
-  def initialize(value="")
+  def initialize(value="", position="")
     @value = value
+    @position = position
     self.class.all << self
   end
   

@@ -2,8 +2,8 @@ class Game
   attr_reader :board, :player1, :player2
   attr_accessor :winner, :current_player
 
-  def initialize
-    @board = Board.new
+  def initialize(board_size=3)
+    @board = Board.new(board_size)
     @board.build
   end
 
