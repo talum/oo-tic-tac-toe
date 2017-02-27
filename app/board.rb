@@ -12,11 +12,15 @@ class Board
   end
 
   def display
+    puts "\n"
+    puts "\n"
     state.each do |row|
       print "|"
       row.each { |cell| print " #{cell.display} | " }
       puts "\n---------------"
     end
+    puts "\n"
+    puts "\n"
   end
 
   def move_is_valid?(player_response)
