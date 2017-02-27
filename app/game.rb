@@ -21,7 +21,8 @@ class Game
   end
 
   def start
-    @current_player = player1
+    players = [player1, player2]
+    @current_player = players.sample
   end
 
   def turn
