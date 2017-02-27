@@ -32,6 +32,7 @@ class Board
   end
 
   def winner?(current_player)
+    # We'll check for rows, columns, and diagonal wins here.
     @current_player = current_player
     row_win? || column_win? || diagonal_win?
   end
@@ -59,12 +60,21 @@ class Board
   end
 
   def column_win?
+    # Since the board is just an array of arrays, we can do a tranpose
+    # operation to turn the rows into columns and perform the same check as
+    # we did for rows.
     state.transpose.any? do |column|
       column.all?{|cell| cell.value == current_player.marker}
     end
   end
 
   def left_diagonal_win?
+    # The diagonal wins are calculated dynamically by finding the 
+    # arithmetic pattern that each cell index maintains
+    # e.g. In a 3X3 array, the positions to check would be 1, 5, 9
+    # This is an arithmetic sequence, so by finding the pattern for the left
+    # diagonal, we can simply check those cells, regardless of the grid
+    # size.
     left_start = 1
     left_positions = []
     1.upto(size) do |i|
@@ -76,6 +86,10 @@ class Board
   end
 
   def right_diagonal_win?
+    # The right diagonal wins are calculated similarly, but the pattern
+    # begins with the rightmost corner, the cell whose index happens to be
+    # the size of the grid. The pattern for finding this arithmetic sequence
+    # happens to be the size minus 1.
     right_start = size
     right_positions = []
     1.upto(size) do |i|
