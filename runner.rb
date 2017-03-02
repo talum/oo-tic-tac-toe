@@ -3,6 +3,8 @@ require_relative './app/game.rb'
 require_relative './app/cell.rb'
 require_relative './app/board.rb'
 require_relative './app/player.rb'
+require_relative './app/human_player.rb'
+require_relative './app/computer_player.rb'
 
 puts "Welcome to Tic-Tac-Toe"
 

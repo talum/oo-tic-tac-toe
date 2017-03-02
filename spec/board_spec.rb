@@ -2,6 +2,8 @@ require_relative '../app/board.rb'
 require_relative '../app/cell.rb'
 require_relative '../app/game.rb'
 require_relative '../app/player.rb'
+require_relative '../app/human_player.rb'
+require_relative '../app/computer_player.rb'
 
 RSpec.describe Board do
   describe "#build" do
@@ -34,7 +36,7 @@ RSpec.describe Board do
   describe "#winner" do
     context "when there is a 3x3 board" do
       it "can detect a row win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new
         Cell.clear
         board.state = [
@@ -46,7 +48,7 @@ RSpec.describe Board do
       end
 
       it "can detect a column win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new
         Cell.clear
         board.state = [
@@ -58,7 +60,7 @@ RSpec.describe Board do
       end
 
       it "can detect a left diagonal win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new
         Cell.clear
         board.state = [
@@ -70,7 +72,7 @@ RSpec.describe Board do
       end
 
       it "can detect a right diagonal win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new
         Cell.clear
         board.state = [
@@ -84,7 +86,7 @@ RSpec.describe Board do
 
     context "when there is a 4x4 board" do
       it "can detect a row win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new
         Cell.clear
         board.state = [
@@ -97,7 +99,7 @@ RSpec.describe Board do
       end
 
       it "can detect a column win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new
         Cell.clear
         board.state = [
@@ -110,7 +112,7 @@ RSpec.describe Board do
       end
 
       it "can detect a left diagonal win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new(4)
         Cell.clear
         board.state = [
@@ -123,7 +125,7 @@ RSpec.describe Board do
       end
 
       it "can detect a right diagonal win" do
-        player1 = Player.new(:x, "human", "Player 1")
+        player1 = Player.new(:x, "Player 1")
         board = Board.new(4)
         Cell.clear
         board.state = [

@@ -9,11 +9,11 @@ class Game
 
   def select_player(player_response)
     if player_response == 1
-      player1 = Player.new(:x, "human", "Player 1")
-      player2 = Player.new(:o, "computer", "Player 2")
+      player1 = HumanPlayer.new(:x, "Player 1")
+      player2 = ComputerPlayer.new(:o, "Player 2")
     else
-      player1 = Player.new(:x, "computer", "Player 1")
-      player2 = Player.new(:o, "human", "Player 2")
+      player1 = ComputerPlayer.new(:x, "Player 1")
+      player2 = HumanPlayer.new(:o, "Player 2")
     end
 
     @player1 = player1
